@@ -26,9 +26,11 @@ new Marker([42.344903, -71.09933]).addTo(map).bindPopup(`<div class="popup-conte
 
 //location 3
 const tjmaxxHTML = document.getElementById("popup-tjmaxx").innerHTML;
-
-new Marker([42.346, -71.112]).addTo(map).bindPopup(`<div class="popup-content">${tjmaxxHTML}</div>`);
+//STILL IN WRONG SPOT BUT THESE R THE COORDINATES IDK WHAT IS WRONG
+new Marker([42.3418359, -71.121312]).addTo(map).bindPopup(`<div class="popup-content">${tjmaxxHTML}</div>`);
 
 //contact us form
+
+
 
 //review form
