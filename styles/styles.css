@@ -18,41 +18,81 @@ body {
 }
 
 header {
-    background-color: #0c273d;
-    color: #fffef1;
-    padding: 1rem 2rem 0 2rem;
+    background-color: #fffef1;
+    color: #0c273d;
+    padding: 4rem 2rem 0 1rem;
     margin: 0 !important;
 }
 
 h1 {
-    font-size: 60px;
+    font-size: 40px;
     margin: 0 !important;
 }
 
 /*navigation*/
 
-nav {
-    background-color: #2161a7;
-}
-
-nav ul {
-    list-style: none;
-    display: grid;
-    text-align: center;
-    justify-content: center;
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 75ch;
-    margin: 0 auto 0 auto;
-    padding: 0 !important;
-}
-
-@media screen and (max-width: 580px) {
-  nav ul{
+#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    background-color: #fffef1;
+    color: #0c273d;
+    transform: translateX(-100%);
+    transition: transform 0.2s;
+    z-index: 20;
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+#menu.open {
+    transform: translateX(0);
+}
+
+#menuBtn {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #0c273d;
+    border-radius: 7px;
+}
+
+#menuBtn span {
+    display: block;
+    height: 5px;
+    width: 100%;
+    background-color: #fffef1;
+    border-radius: 5px;
+}
+
+nav li {
+    font-size: 20px;
+}
+
+#menu nav {
+    flex: 1;
+    display: flex;
+}
+
+#menu nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    margin: 0;
     padding: 0 !important;
-  }
 }
 
 .nav_bar a {
@@ -80,21 +120,22 @@ nav ul {
 }
 
 #map {
-  height: 600px !important;
-  width: 90% !important;
-  left: 5%;
-  right: 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+  height: 100vh !important;
+  width: 100vw !important;
   box-sizing: border-box;
-  margin-bottom: 10rem;
-  border: 10px solid #0c273d;
+  margin: 0rem !important;
+  z-index: 0;
 }
 
-/*footer*/
+/*footer
 footer {
     background-color: #0c273d;
     color: #fffef1;
     margin-top: auto !important;
-    display: grid;
+    display: block;
     grid-template-columns: 1fr 1fr;
 }
 
@@ -132,7 +173,7 @@ button {
     margin: 1rem auto 0 auto;
     border-radius: 5px;
 }
-
+*/
 /*popups*/
 .popup-content, ol {
     background-color: #0c273d;

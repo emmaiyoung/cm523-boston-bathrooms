@@ -14,6 +14,8 @@ new TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo (map);
 
+//turn into array so that when user clicks on location it goes through the list
+
 //location 1
 const dunkinHTML = document.getElementById("popup-dunkin").innerHTML;
 
@@ -29,8 +31,11 @@ const tjmaxxHTML = document.getElementById("popup-tjmaxx").innerHTML;
 //STILL IN WRONG SPOT BUT THESE R THE COORDINATES IDK WHAT IS WRONG
 new Marker([42.3418359, -71.121312]).addTo(map).bindPopup(`<div class="popup-content">${tjmaxxHTML}</div>`);
 
-//contact us form
+//menu button
 
-
-
-//review form
+const menuBtn = document.getElementById("menuBtn");
+const menu = document.getElementById("menu");
+menuBtn.addEventListener('click', () => {
+    menu.classList.toggle("open");
+}
+);

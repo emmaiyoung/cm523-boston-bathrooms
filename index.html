@@ -29,23 +29,25 @@
   </head>
   <body>
     <!-- YOUR HTML GOES HERE -->
-<header>
-<h1>Boston Bathrooms</h1>
-<h4>A public bathroom map of the Boston area.</h4>
-</header>
-<nav class="nav_bar">
-  <ul>
-  <li><a href="index.html">Home</a></li>
-  <li><a href="review.html">Review</a></li>
-  <li><a href="about.html">About</a></li>
-</ul></nav>
-
-<main>
-<div class="body_text">
-  <h3>Click on a location to see its rating, accessability, location, and more!</h3>
+<button id="menuBtn">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+<div id="menu">
+  <header>
+    <h1>Boston Bathrooms</h1>
+    <h4>A public bathroom map of the Boston area.</h4>
+  </header>
+  <nav class="nav_bar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="review.html">Review</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
 </div>
 <div id="map"></div>
-</main>
 <!--location 1 popup-->
 <div id="popup-dunkin" class="popup-content" style="display: none;">
   <h3>Dunkin Donuts</h3>
@@ -81,7 +83,7 @@
   </ol>
   <img src="./images/tjmaxx.jpg" alt="Photo of building." class="bathroom-photos">
 </div>
-
+<!--!ignore
 <footer>
     <img src="images/footerimage.jpg" alt="Bathroom Sink Photo">
     <form id="contact_form">
@@ -101,7 +103,7 @@
         <button>Send</button>
     </form>
 </footer>
-
+--!>
 
     <!-- YOUR EXTERNAL PLUG-IN MAY ASK YOU TO PUT A SCRIPT TAG HERE. -->
   </body>
