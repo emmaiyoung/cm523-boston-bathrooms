@@ -29,24 +29,26 @@
   </head>
   <body>
     <!-- YOUR HTML GOES HERE -->
-<button id="menuBtn">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
-<div id="menu">
-  <header>
+   <nav>
+    <header>
     <h1>Boston Bathrooms</h1>
     <h4>A public bathroom map of the Boston area.</h4>
-  </header>
-  <nav class="nav_bar">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="review.html">Review</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
+</header>
+    <input type ="checkbox" id="sidebar-active">
+    <label for="sidebar-active" class="openSidebarBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+      </svg>
+    </label>
+    <label id="overlay" for="sidebar-active"></label>
+  <div class="links-container">
+    <label for="sidebar-active" class="closeSidebarBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+    </label>
+        <a href="index.html">Home</a>
+        <a href="review.html">Add Location</a>
+        <a href="about.html">About</a>
+    </div>
   </nav>
-</div>
 <div id="map"></div>
 <!--location 1 popup-->
 <div id="popup-dunkin" class="popup-content" style="display: none;">
@@ -83,27 +85,6 @@
   </ol>
   <img src="./images/tjmaxx.jpg" alt="Photo of building." class="bathroom-photos">
 </div>
-<!--!ignore
-<footer>
-    <img src="images/footerimage.jpg" alt="Bathroom Sink Photo">
-    <form id="contact_form">
-    <h2>Contact Us</h2>
-        <div>
-            <p>Name</p>
-            <input type="text" id="name" placeholder="Name"/>
-        </div>
-        <div>
-            <p>Email</p>
-            <input type="text" id="email" placeholder="Email"/>
-        </div>
-        <div>
-            <p>Message</p>
-            <textarea id="message" name="message" placeholder="Write your message..." required></textarea>
-        </div>
-        <button>Send</button>
-    </form>
-</footer>
---!>
 
     <!-- YOUR EXTERNAL PLUG-IN MAY ASK YOU TO PUT A SCRIPT TAG HERE. -->
   </body>

@@ -11,30 +11,30 @@
     </head>
 <body>
     <header>
-<h1>Boston Bathrooms</h1>
-<h4>A public bathroom map of the Boston area.</h4>
+  <nav>
+    <header>
+    <h1>Boston Bathrooms</h1>
+    <h4>A public bathroom map of the Boston area.</h4>
 </header>
-<nav class="nav_bar">
-  <ul>
-  <li><a href="index.html">Home</a></li>
-  <li><a href="review.html">Review</a></li>
-  <li><a href="about.html">About</a></li>
-</ul></nav>
+<input type ="checkbox" id="sidebar-active">
+    <label for="sidebar-active" class="openSidebarBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+      </svg>
+    </label>
+    <label id="overlay" for="sidebar-active"></label>
+  <div class="links-container">
+    <label for="sidebar-active" class="closeSidebarBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+    </label>
+        <a href="index.html">Home</a>
+        <a href="review.html">Add Location</a>
+        <a href="about.html">About</a>
+    </div>
+  </nav>
 <main>
   <div class="body_text">
     <h2>About Us</h2>
-    <p>Boston Bathrooms was inspired by the got2goNYC bathroom map created by Theodora Siegel.
-
-
-
-
-
-
-
-
-
-
-
+    <p>Boston Bathrooms was inspired by the got2goNYC bathroom map created by Theodora Siegel. This campaign is a community-led campaign to improve access to public restrooms, especially in more residential areas, like Allston. User generated content is used to gather information on restroom locations, which will be implemented onto an interactive map that is free to use, essentially helping everyone, from commuters to tourists.
         
     </p>
   </div>
@@ -59,6 +59,5 @@
         <button>Send</button>
     </form>
 </footer>
-
 </body>
 </html>
