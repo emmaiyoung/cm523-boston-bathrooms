@@ -41,13 +41,14 @@ h4{
 nav {
     height: 80px;
     background-color: #0c273d;
+    width: 100vw;
     display: flex;
     align-items: center;
-    z-index: 10;
+    position: fixed;
+    z-index: 50;
 }
 
 .links-container{
-    padding-right: 20px;
     height: 100%;
     width: 100%;
     display: flex;
@@ -56,7 +57,8 @@ nav {
     justify-content: flex-end;
 }
 
-nav a{
+nav a,
+nav label {
     height: 100%;
     padding: 0 20px;
     display: flex;
@@ -65,16 +67,19 @@ nav a{
     color: #fffef1;
 }
 
-nav a:hover{
+nav a:hover,
+.links-container label.openOverlayBtn:hover {
     background-color: #fffef1;
     color: #0c273d;
 }
 
 
 nav svg {
-    fill:#fffef1;
+    fill:#fffef1 !important;
 }
-#sidebar-active{
+
+#sidebar-active,
+#addLocation-active {
     display:none;
 }
 .openSidebarBtn,
@@ -135,15 +140,16 @@ button {
         width: 200px;
         background-color: #0c273d;
         box-shadow: -5px 0 5px rgba(0, 0, 0, .25);
-        transition: .2s ease-out;
+        transition: .3s ease-out;
         z-index: 10;
     }
-    nav a{
+    nav a,
+    nav label {
         box-sizing: border-box;
-        height: auto;
         width: 100%;
-        padding: 20px 30px;
-        justify-content: flex-start; 
+        padding: 20px;
+        justify-content: flex-start;
+        height: 3rem;
     }
     .openSidebarBtn,
     .closeSidebarBtn{
@@ -152,14 +158,24 @@ button {
 }
 .openSidebarBtn{
     margin-left: auto;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: right;
+    
 }
 .closeSidebarBtn{
     margin-right: auto;
+    margin-bottom: 2rem;
 }
     #sidebar-active:checked ~ .links-container{
         right: 0;
     }
+#overlay {
+    display: none;
+}
 #sidebar-active:checked ~ #overlay{
+    display: block;
     height: 100%;
     width: 100%;
     position: fixed;
@@ -180,7 +196,13 @@ footer img {
 h4{
     text-wrap: wrap;
 }
+}
 
+@media screen and (max-width: 770px){
+    .overlayContent{
+        display: flex !important;
+        flex-direction: column;
+    }
 }
 
 /*website body on all pages*/
@@ -193,13 +215,25 @@ h4{
 
 #map {
     position: fixed;
-    top: 0;
+    top: 80px;
     left: 0;
   height: 100vh !important;
   width: 100vw !important;
   box-sizing: border-box;
   margin: 0rem !important;
   z-index: 0;
+}
+
+/*about*/
+h2{
+    text-align: center;
+}
+h2+p {
+    display: block;
+    max-width: 75ch;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 10px;
 }
 
 /*popups*/
@@ -223,38 +257,57 @@ h4{
     border-radius: 9px;
 }
 
-/*review page*/
-
-#review_form {
+/*review form*/
+#reviewForm{
+    margin-top:auto;
+    position: fixed;
+    height: 60vh;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: #fffef1;
     display: flex;
     flex-direction: column;
-    gap: 1em;
-    width: 100%;
-    max-width: 75ch;
-    margin: 0 auto;
-    padding-bottom: 2rem;
+    justify-content: flex-start;
+    z-index: 20;
+    border-top: 10px solid #0c273d;
+    box-shadow: -5px 0 5px rgba(0, 0, 0, .25);
+    transition: bottom 0.35s ease-out;
 }
 
-#review_form input,
-#review_form textarea {
-    width: 100%;
-    padding: .75rem;
-    border: 1px solid #2161a7;
-    box-sizing: border-box;
+.overlayContent {
+    margin: 10px !important;
+    color: #0c273d;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 1rem;
+    height: 100%;
+}
+.reviewMenu {
+    height: 100%;
+    padding: 0 20px;
+    align-items: center;
 }
 
-#reviewbtn {
-    background-color: #2161a7;
+#submit {
+    background: #2161a7;
     color: #fffef1;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 0 auto;
-    padding: 1rem 4rem;
-    border-radius: 5px;
-    outline: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1.2rem;
     text-transform: uppercase;
-    font-size: 30px;
+}   
+
+label svg {
+    fill: #0c273d;
+}
+
+#addLocation-active:checked ~ #reviewForm{
+    bottom: 0;
+}
+
+h3 {
+    margin-top: -10px !important;
 }
 
 /*about*/

@@ -44,8 +44,8 @@
     <label for="sidebar-active" class="closeSidebarBtn">
       <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
     </label>
-        <a href="index.html">Home</a>
-        <a href="review.html">Add Location</a>
+        <a href="index.html">Map</a>
+    <label class="openOverlayBtn" for="addLocation-active">Add Location</label>
         <a href="about.html">About</a>
     </div>
   </nav>
@@ -57,7 +57,6 @@
     <li>179 Brighton Ave, Allston, MA 02134</li>
     <li>Cleanliness:⭐⭐⭐⭐</li>
     <li>Hours: 5am-9pm</li>
-    <li>ADA Compliance: Yes</li>
   </ol>
   <img src="..." alt="Photo of building.">
 </div>
@@ -69,7 +68,6 @@
     <li>341 Boylston Street, Boston, MA 02215</li>
     <li>Cleanliness:⭐⭐⭐⭐⭐</li>
     <li>Hours: 7am-10pm</li>
-    <li>ADA Compliance: Yes</li>
   </ol>
   <img src="..." alt="Photo of building.">
 </div>
@@ -81,10 +79,56 @@
     <li>525 Harvard St, Brookline, MA 02446</li>
     <li>Cleanliness:⭐⭐⭐</li>
     <li>Hours: 9:30am-9:30pm</li>
-    <li>ADA Compliance: Yes</li>
   </ol>
   <img src="./images/tjmaxx.jpg" alt="Photo of building." class="bathroom-photos">
 </div>
+
+<!--add function-->
+<input type="checkbox" id="addLocation-active">
+<div id="reviewForm" class="overlayOpn">
+  <div class="overlayContent">
+    <div class="overlayContent">
+      <label class="closeOverlayBtn" for ="addLocation-active">
+        <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+      </label>
+    </div>
+        <h3>Double click on a spot to add a new location.</h3>
+    <div class="reviewMenu">
+      <label for="locationName">
+        Name of Location:
+        <input type="text" id="locationNameInput" name="locationName">
+      </label>
+    </div>
+    <div class="reviewMenu">
+      <label for="address">
+        Coordinates (Double Click on the map):
+        <input type="text" id="addressInput" name="address">
+      </label>
+    </div>
+    <div class="reviewMenu">
+      <label for="hours">
+        Hours
+        <input type="text" id="hoursInput" name="hours">
+      </label>
+    </div>
+    <div class="reiviewMenu">
+      <label for="rating">Rating</label>
+      <form id="rating" name="rating">
+        <input type="radio" id="star" name="rating" value="1">
+        <input type="radio" id="star" name="rating" value="2">
+        <input type="radio" id="star" name="rating" value="3">
+        <input type="radio" id="star" name="rating" value="4">
+        <input type="radio" id="star" name="rating" value="5">
+      </form>
+    </div>
+    <div class="reviewMenu">
+      <input type="file" id="bathroomPic">
+      <img id="output" src alt width="48" height="48">
+    </div>
+    <button id="Submit">Submit</button>
+  </div>
+</div>
+
 
     <!-- YOUR EXTERNAL PLUG-IN MAY ASK YOU TO PUT A SCRIPT TAG HERE. -->
   </body>

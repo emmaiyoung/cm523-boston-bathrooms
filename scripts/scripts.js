@@ -4,6 +4,9 @@
 
 import { Map, TileLayer, Marker, Popup, Icon } from '../leaflet-2.0.0-alpha.1/dist/leaflet.js';
 
+let tempMarker = null;
+let pictureURL = null;
+let mapCoords = null;
 const mapIcon = new Icon({
     iconUrl: 'images/icon.png',
     iconSize: [38, 38],
@@ -39,5 +42,118 @@ const tjmaxxHTML = document.getElementById("popup-tjmaxx").innerHTML;
 new Marker([42.3418359, -71.121312],  {icon: mapIcon}).addTo(map).bindPopup(`<div class="popup-content">${tjmaxxHTML}</div>`);
 
 
-//review form
-const reviewForm = document.getElementById('review_form');
+//add location form
+
+document.addEventListener('DOMContentLoaded', function() {
+
+const sidebarToggle = document.getElementById('sidebar-active');
+const addLocationToggle = document.getElementById('addLocation-active');
+const addLocationLabel = document.querySelector('.openOverlayBtn');
+const locationNameInput = document.getElementById("locationNameInput"); 
+const addressInput = document.getElementById('addressInput');
+const ratingForm = document.getElementById("rating"); 
+const submitButton = document.getElementById("Submit");
+const bathroomPicInput = document.getElementById("bathroomPic");
+const hoursInput = document.getElementById("hoursInput");
+
+function closeSidebar() {
+  if (sidebarToggle.checked) {
+    sidebarToggle.checked = false;
+  }
+}
+addLocationLabel.addEventListener('click', closeSidebar);
+
+bathroomPicInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            pictureURL = URL.createObjectURL(file);
+        } else {
+            pictureURL = null;
+        }
+    });
+
+
+function handleMapDblClick(e) {
+    if (tempMarker !==null){
+        map.removeLayer(tempMarker);
+    }
+    mapCoords = e.latlng;
+    const lat = e.latlng.lat.toFixed(6);
+    const lng = e.latlng.lng.toFixed(6);
+    tempMarker = new Marker(e.latlng, {icon: mapIcon}).addTo(map);
+    addressInput.value = `${lat}, ${lng}`; 
+}
+
+addLocationToggle.addEventListener('change', function() {
+    if (this.checked) {
+        map.on('dblclick', handleMapDblClick);
+        map.doubleClickZoom.disable();
+    } else {
+        map.off('dblclick', handleMapDblClick);
+        map.doubleClickZoom.enable();
+        if (tempMarker !== null){
+            map.removeLayer(tempMarker);
+            tempMarker = null;
+        }
+    }
+});
+
+function handleSubmit(event) {
+        event.preventDefault(); 
+        
+        const name = locationNameInput.value.trim();
+        const addressText = addressInput.value.trim();
+        const hours = hoursInput.value.trim();
+        const selectedRating = ratingForm.querySelector('input[name="rating"]:checked');
+        const ratingValue = selectedRating ? '⭐'.repeat(parseInt(selectedRating.value)) : 'No rating'; 
+
+        if (!name || !addressText) {
+            alert('Please enter a Name and Address.');
+            return;
+        }
+        if (!mapCoords){
+            alert('Please double-click the map to select a location.');
+            return;
+        }
+
+        const photoHTML = pictureURL ? `<img src="${pictureURL}" alt="Bathroom Photo" class="bathroom-photos" style="max-width: 100%; height: auto;">`: '';
+
+        const coordsArray = addressText.split(',').map(coord => parseFloat(coord.trim()));
+        const lat = coordsArray[0];
+        const lng = coordsArray[1];
+        const newPopupHTML = `
+            <div class="popup-content">
+                <h3>${name} (User Added)</h3>
+                <ol>
+                    <li>Coordinates: ${addressText}</li>
+                    <li>Cleanliness: ${ratingValue}</li>
+                    <li>Hours: ${hours}</li>
+                </ol>
+                ${photoHTML}
+            </div>
+        `;
+        
+
+        if (tempMarker !== null) {
+            map.removeLayer(tempMarker);
+            tempMarker = null;
+        }
+        
+
+        new Marker([mapCoords.lat, mapCoords.lng], {icon: mapIcon})
+            .addTo(map)
+            .bindPopup(newPopupHTML)
+            .openPopup(); 
+        locationNameInput.value = '';
+        addressInput.value = '';
+        if(selectedRating) selectedRating.checked = false;
+
+        bathroomPicInput.value = ''; 
+        pictureURL = null;
+        mapCoords = null;
+
+        addLocationToggle.checked = false;
+    }
+    
+    submitButton.addEventListener('click', handleSubmit);
+});
