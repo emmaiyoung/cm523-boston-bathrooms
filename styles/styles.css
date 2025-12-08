@@ -238,17 +238,25 @@ h2+p {
 
 /*popups*/
 .popup-content, ol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #0c273d;
     border-radius: 5px;
     color: #fffef1;
     width: fit-content;
     height: fit-content;
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: .5em;
-    padding-bottom: .5em;
     list-style-type: none;
     line-height: 1.5;
+    padding: 1em;
+}
+
+.popup-content ol {
+    padding: 1em;
+}
+
+.popup-content h3 {
+    padding: 1em;
 }
 
 .bathroom-photos {
@@ -260,8 +268,9 @@ h2+p {
 /*review form*/
 #reviewForm{
     margin-top:auto;
+    padding-bottom: 1rem;
     position: fixed;
-    height: 60vh;
+    height: 50vh;
     bottom: -100%;
     left: 0;
     width: 100%;
@@ -273,11 +282,14 @@ h2+p {
     border-top: 10px solid #0c273d;
     box-shadow: -5px 0 5px rgba(0, 0, 0, .25);
     transition: bottom 0.35s ease-out;
+    overflow: scroll;
 }
 
 .overlayContent {
     margin: 10px !important;
+    padding: 0 .5em;
     color: #0c273d;
+    fill: #0c273d;
     display: grid;
     grid-template-columns: auto auto auto;
     gap: 1rem;
@@ -285,22 +297,16 @@ h2+p {
 }
 .reviewMenu {
     height: 100%;
-    padding: 0 20px;
     align-items: center;
 }
 
-#submit {
+#Submit {
     background: #2161a7;
     color: #fffef1;
-    padding: 12px;
     border-radius: 6px;
     font-size: 1.2rem;
     text-transform: uppercase;
 }   
-
-label svg {
-    fill: #0c273d;
-}
 
 #addLocation-active:checked ~ #reviewForm{
     bottom: 0;

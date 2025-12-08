@@ -81,7 +81,6 @@ function handleMapDblClick(e) {
     const lat = e.latlng.lat.toFixed(6);
     const lng = e.latlng.lng.toFixed(6);
     tempMarker = new Marker(e.latlng, {icon: mapIcon}).addTo(map);
-    addressInput.value = `${lat}, ${lng}`; 
 }
 
 addLocationToggle.addEventListener('change', function() {
@@ -118,14 +117,11 @@ function handleSubmit(event) {
 
         const photoHTML = pictureURL ? `<img src="${pictureURL}" alt="Bathroom Photo" class="bathroom-photos" style="max-width: 100%; height: auto;">`: '';
 
-        const coordsArray = addressText.split(',').map(coord => parseFloat(coord.trim()));
-        const lat = coordsArray[0];
-        const lng = coordsArray[1];
         const newPopupHTML = `
             <div class="popup-content">
                 <h3>${name} (User Added)</h3>
                 <ol>
-                    <li>Coordinates: ${addressText}</li>
+                    <li>Address: ${addressText}</li>
                     <li>Cleanliness: ${ratingValue}</li>
                     <li>Hours: ${hours}</li>
                 </ol>
