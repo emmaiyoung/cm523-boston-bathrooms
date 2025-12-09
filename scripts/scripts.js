@@ -99,7 +99,7 @@ function handleTouch(e) {
         const containerX = touchPoint.clientX - map._container.offsetLeft;
         const containerY = touchPoint.clientY - map._container.offsetTop;
         const point = new Point(containerX, containerY)
-        const latlng = map.mouseEventToLatLng(point);
+        const latlng = map.pointerEventToLatLng(point);
         placeMarkerAndOpenForm(latlng);
         lastTap = 0;
     } else{
