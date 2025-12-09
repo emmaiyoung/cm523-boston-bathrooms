@@ -170,8 +170,8 @@ function handleSubmit(event) {
         locationNameInput.value = '';
         addressInput.value = '';
         if(selectedRating) selectedRating.checked = false;
-
         bathroomPicInput.value = ''; 
+        hoursInput.value = '';
         pictureURL = null;
         mapCoords = null;
 
