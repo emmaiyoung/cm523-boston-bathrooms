@@ -88,23 +88,23 @@ function handleMapDblClick (e){
         placeMarkerAndOpenForm(e.latlng);
 }
 
+let lastTap = 0;
 
-
-function handleTouch(e) {
-    e.originalEvent.preventDefault();
+function handlePointerDown(e) {
     const now = Date.now();
-    const timeDifference = now - lastTap;
-    if (timeDifference < 500 && timeDifference > 0) {
-        const touch = e.originalEvent.touches [0];
-        const latlng = map.latlngFromMouseEvent(touch);
+    const delta = now - lastTap;
+    if (delta > 0 && delta < 500) {
+        const pointerEvent = e.originalEvent;
+        const latlng = map.pointerEventToLatLng(pointerEvent);
+
         placeMarkerAndOpenForm(latlng);
+
         lastTap = 0;
-        e.originalEvent.preventDefault();
-    } else{
+        pointerEvent.preventDefault();
+    } else {
         lastTap = now;
     }
 }
-
 map.on('touchstart', handleTouch);
 map.on('dblclick', handleMapDblClick);
 
@@ -125,7 +125,6 @@ addLocationToggle.addEventListener('change', function() {
 });
 */
 map.doubleClickZoom.disable();
-map.doubleTap
 function handleSubmit(event) {
         event.preventDefault(); 
         
