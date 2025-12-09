@@ -93,7 +93,7 @@ function handleTouch(e) {
     const now = Date.now();
     const timeDifference = now - lastTap;
     if (timeDifference < 250 && timeDifference > 0) {
-        const latlng = map.containerPointToLatLng(e.originalEvent.touches[0]);
+        const latlng = map.mouseEventToLatLng(e.originalEvent.touches[0]);
         placeMarkerAndOpenForm(latlng);
         lastTap = 0;
     } else{
