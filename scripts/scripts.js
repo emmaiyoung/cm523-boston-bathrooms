@@ -212,4 +212,17 @@ function toggleToiletVisibility() {
 toggleToiletVisibility(); 
 addLocationToggle.addEventListener('change', toggleToiletVisibility);
 
+map.on('popupopen', function(){
+    if (toiletContainer) {
+        toiletContainer.style.display = 'none';
+        toiletContainer.classList.remove('toilet-active');
+    }
+})
+
+map.on('popupclose', function(){
+    if (!addLocationToggle.checked){
+        toggleToiletVisibility();
+    }
+})
+
 });
