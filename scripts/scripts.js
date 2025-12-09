@@ -88,6 +88,8 @@ function handleMapDblClick (e){
         placeMarkerAndOpenForm(e.latlng);
 }
 
+/*
+
 function handleTouch(e) {
     e.originalEvent.preventDefault();
     const now = Date.now();
@@ -104,8 +106,8 @@ function handleTouch(e) {
         lastTap = now;
     }
 }
-
-map.on('touchstart', handleTouch);
+*/
+//map.on('touchstart', handleTouch);
 map.on('dblclick', handleMapDblClick);
 
 /*
