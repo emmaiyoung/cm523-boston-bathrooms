@@ -73,29 +73,20 @@ bathroomPicInput.addEventListener('change', function(e) {
     });
 
 
-function handleMapDblClick(e) {
-    if (tempMarker !==null){
+
+map.on('dblclick', function(e) {
+    if (tempMarker !== null) {
         map.removeLayer(tempMarker);
     }
     mapCoords = e.latlng;
     const lat = e.latlng.lat.toFixed(6);
     const lng = e.latlng.lng.toFixed(6);
     tempMarker = new Marker(e.latlng, {icon: mapIcon}).addTo(map);
-}
-
-addLocationToggle.addEventListener('change', function() {
-    if (this.checked) {
-        map.on('dblclick', handleMapDblClick);
-        map.doubleClickZoom.disable();
-    } else {
-        map.off('dblclick', handleMapDblClick);
-        map.doubleClickZoom.enable();
-        if (tempMarker !== null){
-            map.removeLayer(tempMarker);
-            tempMarker = null;
-        }
-    }
+    addLocationToggle.checked = true;
+    addLocationToggle.dispatchEvent(new Event ('change'));
 });
+
+map.doubleClickZoom.disable();
 
 function handleSubmit(event) {
         event.preventDefault(); 
@@ -150,6 +141,38 @@ function handleSubmit(event) {
 
         addLocationToggle.checked = false;
     }
-    
-    submitButton.addEventListener('click', handleSubmit);
+submitButton.addEventListener('click', handleSubmit);
+
+
+const toiletContainer = document.getElementById('toilet-logo-container');
+const toiletImage = document.getElementById('toilet-image');
+function triggerToiletAnimation() {
+    if (toiletContainer && !toiletContainer.classList.contains('toilet-active')) {
+        toiletImage.src = 'images/toiletclosed.png';
+        toiletContainer.classList.add('toilet-active');
+        setTimeout(()=> {
+            toiletImage.src = 'images/toilet.png';
+            toiletImage.alt = 'Open toilet';
+        }, 1600);
+    }
+}
+
+setTimeout(triggerToiletAnimation, 100);
+
+
+function toggleToiletVisibility() {
+    if (!toiletContainer) return;
+
+    if (addLocationToggle.checked) {
+        toiletContainer.style.display = 'none';
+        toiletContainer.classList.remove('toilet-active');
+    } else {
+        toiletContainer.style.display = 'block';
+        triggerToiletAnimation();
+    }
+}
+
+toggleToiletVisibility(); 
+addLocationToggle.addEventListener('change', toggleToiletVisibility);
+
 });

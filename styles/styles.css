@@ -126,7 +126,7 @@ button {
     display: flex;
     padding: .5em 2rem;
     justify-content: center;
-    margin: 1rem auto 0 auto;
+    margin: 1rem auto 1rem auto;
     border-radius: 5px;
 }
 
@@ -203,6 +203,19 @@ h4{
         display: flex !important;
         flex-direction: column;
     }
+    
+    #projectDocs {
+    flex-direction: column !important;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+}
+#projectDocs > div {
+        width: 100%;
+        text-align: center;
+        margin: 5px 0;
+    }
 }
 
 /*website body on all pages*/
@@ -217,23 +230,11 @@ h4{
     position: fixed;
     top: 80px;
     left: 0;
-  height: 100vh !important;
+  height: calc(100vh - 80px) !important;
   width: 100vw !important;
   box-sizing: border-box;
   margin: 0rem !important;
   z-index: 0;
-}
-
-/*about*/
-h2{
-    text-align: center;
-}
-h2+p {
-    display: block;
-    max-width: 75ch;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 0 10px;
 }
 
 /*popups*/
@@ -285,15 +286,21 @@ h2+p {
     overflow: scroll;
 }
 
+#reviewForm {
+    display: flex;
+    align-items: center;
+}
+
 .overlayContent {
     margin: 10px !important;
     padding: 0 .5em;
     color: #0c273d;
     fill: #0c273d;
-    display: grid;
-    grid-template-columns: auto auto auto;
+    display: flex;
+    flex-direction: column;
     gap: 1rem;
     height: 100%;
+    align-items: top;
 }
 .reviewMenu {
     height: 100%;
@@ -316,7 +323,51 @@ h3 {
     margin-top: -10px !important;
 }
 
+#toilet-logo-container {
+    position: fixed;
+    bottom: -200px; 
+    left: -6rem;
+    z-index: 1000;
+    transition: bottom .7s ease-out; 
+    opacity: 1;
+    pointer-events: none;
+}
+
+#toilet-logo-container #toilet-image {
+    width: 25rem;
+    height: auto;
+    margin: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.toilet-active {
+    bottom: -130px !important;
+    opacity: 1 !important;
+}
+
 /*about*/
 .body_text {
     color: #0c273d;
+    padding-top: 80px;
+    min-height: calc(100vh - 80px -200px);
+}
+
+#projectDocs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 75ch;
+    margin: 1rem auto 1rem auto;
+    padding: 0 2em;
+}
+
+h2{
+    text-align: center;
+    margin: 1rem;
+}
+h2+p {
+    display: block;
+    max-width: 75ch;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 10px;
 }
