@@ -212,7 +212,7 @@ h4{
     padding: 1rem;
 }
 #projectDocs > div {
-        width: 100%;
+        width: fit-content;
         text-align: center;
         margin: 5px 0;
     }
@@ -370,4 +370,21 @@ h2+p {
     margin-right: auto;
     margin-left: auto;
     padding: 0 10px;
+}
+
+.projectlinks {
+    background-color: #0c273d;
+    border-radius: 20px;
+    padding: 1rem;
+    margin: .5em;
+}
+
+.projectlinks a {
+    color: #fffef1;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.projectlinks:hover {
+    background-color: #2161a7;
 }

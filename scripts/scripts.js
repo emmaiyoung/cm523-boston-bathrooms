@@ -16,7 +16,7 @@ const mapIcon = new Icon({
 
 const map = new Map('map', {
     center: [42.3601, -71.0589],
-    zoom: 10,
+    zoom: 13,
 });
 
 new TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -27,9 +27,9 @@ new TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 //turn into array so that when user clicks on location it goes through the list
 
 //location 1
-const dunkinHTML = document.getElementById("popup-dunkin").innerHTML;
+const coolidgeHTML = document.getElementById("popup-coolidge").innerHTML;
 
-new Marker([42.348906, -71.160473], {icon: mapIcon}).addTo(map).bindPopup(`<div class="popup-content">${dunkinHTML}</div>`);
+new Marker([42.3436, -71.1195], {icon: mapIcon}).addTo(map).bindPopup(`<div class="popup-content">${coolidgeHTML}</div>`);
 
 //location 2
 const targetHTML = document.getElementById("popup-target").innerHTML;
@@ -86,6 +86,26 @@ map.on('dblclick', function(e) {
     addLocationToggle.dispatchEvent(new Event ('change'));
 });
 
+function handleTouch(e) {
+    e.originalEvent.preventDefault();
+    const now = Date.now();
+    const timeDifference = now - lastTap;
+    if (timeDifference < 250 && timeDifference > 0) {
+        const latlng = map.pointerEventToLatLng(e.originalEvent.touches[0])
+    if (tempMarker !== null){
+        map.removeLayer(tempMarker);
+    }
+    mapCoords = latlng;
+    const lat = latlng.lat.toFixed(6);
+    const lng = latlng.lng.toFixed(6);
+    tempMarker = new Marker(latlng, {icon: mapIcon}).addTo(map);
+    addLocationToggle.checked = true;
+    addLocationToggle.dispatchEvent(new Event ('change'));
+    lastTap = 0;
+} else {lastTap = now}
+}
+
+map.on('touchstart', handleTouch);
 map.doubleClickZoom.disable();
 
 function handleSubmit(event) {
@@ -143,7 +163,6 @@ function handleSubmit(event) {
     }
 submitButton.addEventListener('click', handleSubmit);
 
-
 const toiletContainer = document.getElementById('toilet-logo-container');
 const toiletImage = document.getElementById('toilet-image');
 function triggerToiletAnimation() {
@@ -153,12 +172,11 @@ function triggerToiletAnimation() {
         setTimeout(()=> {
             toiletImage.src = 'images/toilet.png';
             toiletImage.alt = 'Open toilet';
-        }, 1600);
+        }, 1000);
     }
 }
 
 setTimeout(triggerToiletAnimation, 100);
-
 
 function toggleToiletVisibility() {
     if (!toiletContainer) return;
