@@ -92,9 +92,10 @@ function handleTouch(e) {
     e.originalEvent.preventDefault();
     const now = Date.now();
     const timeDifference = now - lastTap;
-    if (timeDifference < 250 && timeDifference > 0) {
-        const containerX = Touch.clientX - map._container.offsetLeft;
-        const containerY = Touch.clientY - map._container.offsetTop;
+    if (timeDifference < 500 && timeDifference > 0) {
+        const touchPoint = e.originalEvent.touches [0];
+        const containerX = touchPoint.clientX - map._container.offsetLeft;
+        const containerY = touchPoint.clientY - map._container.offsetTop;
         const point = new Point(containerX, containerY)
         const latlng = map.containerPointToLatLng(point);
         placeMarkerAndOpenForm(latlng);
