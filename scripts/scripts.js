@@ -95,13 +95,11 @@ function handleTouch(e) {
     const now = Date.now();
     const timeDifference = now - lastTap;
     if (timeDifference < 500 && timeDifference > 0) {
-        const touchPoint = e.originalEvent.touches [0];
-        const containerX = touchPoint.clientX - map._container.offsetLeft;
-        const containerY = touchPoint.clientY - map._container.offsetTop;
-        const point = new Point(containerX, containerY)
-        const latlng = map.pointerEventToLatLng(point);
+        const touch = e.originalEvent.touches [0];
+        const latlng = map.latlngFromMouseEvent(touch);
         placeMarkerAndOpenForm(latlng);
         lastTap = 0;
+        e.originalEvent.preventDefault();
     } else{
         lastTap = now;
     }
@@ -127,6 +125,7 @@ addLocationToggle.addEventListener('change', function() {
 });
 */
 map.doubleClickZoom.disable();
+map.doubleTap
 function handleSubmit(event) {
         event.preventDefault(); 
         
