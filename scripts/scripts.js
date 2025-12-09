@@ -88,7 +88,7 @@ function handleMapDblClick (e){
         placeMarkerAndOpenForm(e.latlng);
 }
 
-/*
+
 
 function handleTouch(e) {
     e.originalEvent.preventDefault();
@@ -99,15 +99,15 @@ function handleTouch(e) {
         const containerX = touchPoint.clientX - map._container.offsetLeft;
         const containerY = touchPoint.clientY - map._container.offsetTop;
         const point = new Point(containerX, containerY)
-        const latlng = map.containerPointToLatLng(point);
+        const latlng = map.mouseEventToLatLng(point);
         placeMarkerAndOpenForm(latlng);
         lastTap = 0;
     } else{
         lastTap = now;
     }
 }
-*/
-//map.on('touchstart', handleTouch);
+
+map.on('touchstart', handleTouch);
 map.on('dblclick', handleMapDblClick);
 
 /*
