@@ -102,6 +102,9 @@ function handleTouch(e) {
 }
 
 map.on('touchstart', handleTouch);
+map.on('dblclick', handleMapDblClick);
+
+/*
 addLocationToggle.addEventListener('change', function() {
     if (this.checked) {
         map.off('dblclick', handleMapDblClick);
@@ -116,9 +119,8 @@ addLocationToggle.addEventListener('change', function() {
         }
     }
 });
-map.on('dblclick', handleMapDblClick);
+*/
 map.doubleClickZoom.disable();
-
 function handleSubmit(event) {
         event.preventDefault(); 
         
