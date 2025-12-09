@@ -2,7 +2,7 @@
 
 //leaflet import for home page
 
-import { Map, TileLayer, Marker, Popup, Icon } from '../leaflet-2.0.0-alpha.1/dist/leaflet.js';
+import { Map, TileLayer, Marker, Popup, Icon, Point } from '../leaflet-2.0.0-alpha.1/dist/leaflet.js';
 
 let tempMarker = null;
 let pictureURL = null;
@@ -93,7 +93,10 @@ function handleTouch(e) {
     const now = Date.now();
     const timeDifference = now - lastTap;
     if (timeDifference < 250 && timeDifference > 0) {
-        const latlng = map.mouseEventToLatLng(e.originalEvent.touches[0]);
+        const containerX = Touch.clientX - map._container.offsetLeft;
+        const containerY = Touch.clientY - map._container.offsetTop;
+        const point = new Point(containerX, containerY)
+        const latlng = map.containerPointToLatLng(point);
         placeMarkerAndOpenForm(latlng);
         lastTap = 0;
     } else{
