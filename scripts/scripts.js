@@ -7,7 +7,6 @@ import { Map, TileLayer, Marker, Popup, Icon, Point } from '../leaflet-2.0.0-alp
 let tempMarker = null;
 let pictureURL = null;
 let mapCoords = null;
-let lastTap = 0;
 const mapIcon = new Icon({
     iconUrl: 'images/icon.png',
     iconSize: [38, 38],
@@ -95,7 +94,8 @@ function handlePointerDown(e) {
     const delta = now - lastTap;
     if (delta > 0 && delta < 500) {
         const pointerEvent = e.originalEvent;
-        const latlng = map.pointerEventToLatLng(pointerEvent);
+        const containerPoint = map.pointerEventToContainerPoint(pointerEvent);
+        const latlng = map.containerPointToLatLng(containerPoint);
 
         placeMarkerAndOpenForm(latlng);
 
@@ -105,7 +105,7 @@ function handlePointerDown(e) {
         lastTap = now;
     }
 }
-map.on('touchstart', handleTouch);
+map.on('pointerdown', handlePointerDown);
 map.on('dblclick', handleMapDblClick);
 
 /*
