@@ -465,6 +465,7 @@ h2+p {
     color: #fffef1;
     text-decoration: none;
     text-transform: uppercase;
+    font-size: 1rem;
 }
 
 .projectlinks:hover {
