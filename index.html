@@ -92,13 +92,14 @@
 <!--add function-->
 <input type="checkbox" id="addLocation-active">
 <div id="reviewForm" class="overlayOpn">
-  <div class="overlayContent">
     <div class="reiviewMenu">
       <label class="closeOverlayBtn" for ="addLocation-active">
         <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
       </label>
-    </div>
+    </div class="addLocationHeading">
         <h3>Double click on a spot to add a new location.</h3>
+    <div class="section1">
+    <div class="overlayContent">
     <div class="reviewMenu">
       <label for="locationName">
         Name of Location:
@@ -113,11 +114,14 @@
     </div>
     <div class="reviewMenu">
       <label for="hours">
-        Hours
+        Hours:
         <input type="text" id="hoursInput" name="hours">
       </label>
     </div>
-    <div class="reiviewMenu">
+    </div>
+    </div>
+    <div class="section2">
+    <div class="reviewMenu">
       <label for="rating">Rating (1-5)</label>
       <form id="rating" name="rating">
         <input type="radio" id="star" name="rating" value="1">
@@ -128,10 +132,12 @@
       </form>
     </div>
     <div class="reviewMenu">
-      <input type="file" id="bathroomPic">
-      <img id="output" src alt width="48" height="48">
+      <label for="pic">Add a photo</label>
+      <input type="file" id="bathroomPic" name="pic">
+      <img id="output" src alt width="20" height="20">
     </div>
     <button id="Submit">Submit</button>
+    </div>
   </div>
 </div>
 

@@ -7,6 +7,7 @@ import { Map, TileLayer, Marker, Popup, Icon } from '../leaflet-2.0.0-alpha.1/di
 let tempMarker = null;
 let pictureURL = null;
 let mapCoords = null;
+let lastTap = 0;
 const mapIcon = new Icon({
     iconUrl: 'images/icon.png',
     iconSize: [38, 38],
@@ -62,7 +63,6 @@ function closeSidebar() {
   }
 }
 addLocationLabel.addEventListener('click', closeSidebar);
-
 bathroomPicInput.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
@@ -72,27 +72,8 @@ bathroomPicInput.addEventListener('change', function(e) {
         }
     });
 
-
-
-map.on('dblclick', function(e) {
-    if (tempMarker !== null) {
-        map.removeLayer(tempMarker);
-    }
-    mapCoords = e.latlng;
-    const lat = e.latlng.lat.toFixed(6);
-    const lng = e.latlng.lng.toFixed(6);
-    tempMarker = new Marker(e.latlng, {icon: mapIcon}).addTo(map);
-    addLocationToggle.checked = true;
-    addLocationToggle.dispatchEvent(new Event ('change'));
-});
-
-function handleTouch(e) {
-    e.originalEvent.preventDefault();
-    const now = Date.now();
-    const timeDifference = now - lastTap;
-    if (timeDifference < 250 && timeDifference > 0) {
-        const latlng = map.pointerEventToLatLng(e.originalEvent.touches[0])
-    if (tempMarker !== null){
+    function placeMarkerAndOpenForm(latlng) {
+        if (tempMarker !== null) {
         map.removeLayer(tempMarker);
     }
     mapCoords = latlng;
@@ -101,11 +82,41 @@ function handleTouch(e) {
     tempMarker = new Marker(latlng, {icon: mapIcon}).addTo(map);
     addLocationToggle.checked = true;
     addLocationToggle.dispatchEvent(new Event ('change'));
-    lastTap = 0;
-} else {lastTap = now}
+    }
+
+function handleMapDblClick (e){
+        placeMarkerAndOpenForm(e.latlng);
+}
+
+function handleTouch(e) {
+    e.originalEvent.preventDefault();
+    const now = Date.now();
+    const timeDifference = now - lastTap;
+    if (timeDifference < 250 && timeDifference > 0) {
+        const latlng = map.containerPointToLatLng(e.originalEvent.touches[0]);
+        placeMarkerAndOpenForm(latlng);
+        lastTap = 0;
+    } else{
+        lastTap = now;
+    }
 }
 
 map.on('touchstart', handleTouch);
+addLocationToggle.addEventListener('change', function() {
+    if (this.checked) {
+        map.off('dblclick', handleMapDblClick);
+        map.doubleClickZoom.disable();
+    } else {
+        map.on('dblclick', handleMapDblClick);
+        map.doubleClickZoom.disable();
+        if (tempMarker !== null){
+            map.removeLayer(tempMarker);
+            tempMarker = null;
+            mapCoords = null;
+        }
+    }
+});
+map.on('dblclick', handleMapDblClick);
 map.doubleClickZoom.disable();
 
 function handleSubmit(event) {
@@ -172,7 +183,7 @@ function triggerToiletAnimation() {
         setTimeout(()=> {
             toiletImage.src = 'images/toilet.png';
             toiletImage.alt = 'Open toilet';
-        }, 1000);
+        }, 400);
     }
 }
 
