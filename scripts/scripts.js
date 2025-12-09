@@ -91,7 +91,7 @@ function handleMapDblClick (e){
 function handlePointerDown(e) {
     const now = Date.now();
     const delta = now - lastTap;
-    if (delta > 0 && delta < 500) {
+    if (delta > 0 && delta < 250) {
         const pointerEvent = e.originalEvent;
         const containerPoint = map.pointerEventToContainerPoint(pointerEvent);
         const latlng = map.containerPointToLatLng(containerPoint);
