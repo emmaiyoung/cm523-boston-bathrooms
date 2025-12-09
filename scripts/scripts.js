@@ -224,6 +224,7 @@ map.on('popupclose', function(){
 
 map.whenReady(function()
 {
+    toiletContainer.classList.remove('toilet-active');
     triggerToiletAnimation();
 })
 });
