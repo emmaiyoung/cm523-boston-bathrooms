@@ -7,6 +7,7 @@ import { Map, TileLayer, Marker, Popup, Icon, Point } from '../leaflet-2.0.0-alp
 let tempMarker = null;
 let pictureURL = null;
 let mapCoords = null;
+let lastTap = 0;
 const mapIcon = new Icon({
     iconUrl: 'images/icon.png',
     iconSize: [38, 38],
@@ -86,8 +87,6 @@ bathroomPicInput.addEventListener('change', function(e) {
 function handleMapDblClick (e){
         placeMarkerAndOpenForm(e.latlng);
 }
-
-let lastTap = 0;
 
 function handlePointerDown(e) {
     const now = Date.now();
@@ -193,7 +192,7 @@ function triggerToiletAnimation() {
     }
 }
 
-setTimeout(triggerToiletAnimation, 100);
+//setTimeout(triggerToiletAnimation, 100);
 
 function toggleToiletVisibility() {
     if (!toiletContainer) return;
@@ -223,4 +222,8 @@ map.on('popupclose', function(){
     }
 })
 
+map.whenReady(function()
+{
+    triggerToiletAnimation();
+})
 });
