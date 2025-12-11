@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="styles/styles.css" />
     </head>
 <body>
-    <header>
   <nav>
     <header>
-    <h1>Boston Bathrooms</h1>
-    <h4>A public bathroom map of the Boston area.</h4>
+    <div>
+      <a id="homeBtn" href="index.html">
+        <img class="headerLogoWrapper" src="logo.png" alt="Boston Bathrooms">
+      </a>
+    </div>
 </header>
 <input type ="checkbox" id="sidebar-active">
     <label for="sidebar-active" class="openSidebarBtn">
@@ -37,7 +39,7 @@
     <p>Boston Bathrooms was inspired by the got2goNYC bathroom map created by Theodora Siegel. This campaign is a community-led campaign to improve access to public restrooms, especially in more residential areas, like Allston. User generated content is used to gather information on restroom locations, which will be implemented onto an interactive map that is free to use, essentially helping everyone, from commuters to tourists.
     </p>
   </div>
-<div id="projectDocs">
+<div class="projectDocs">
   <div id="UXreport" class="projectlinks">
     <a href="https://docs.google.com/document/d/1_J7Sb4rl1bj5lzOGs4j2bwpDUlix388P5mTRpJw2ypk/edit?usp=sharing">UX Report</a>
   </div>
@@ -51,27 +53,10 @@
   <div id="citations" class="projectlinks">
     <a href="https://docs.google.com/document/d/1WHILqpS6iiwaWDGKG4t_VT0YMGjSM7ulkPQ5A5hRk1k/edit?usp=sharing">Citations and AI Use</a>
   </div>
+  <div id="presentation" class="projectlinks">
+    <a href="https://www.canva.com/design/DAG7C8akdx0/5P2ek7pz7kXcTWDjPQK5_A/edit?utm_content=DAG7C8akdx0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Presentation</a>
+  </div>
 </div>
 </main>
-
-<footer>
-    <img src="images/footerimage.jpg" alt="Bathroom Sink Photo">
-    <form id="contact_form">
-    <h2>Contact Us</h2>
-        <div>
-            <p>Name</p>
-            <input type="text" id="name" placeholder="Name"/>
-        </div>
-        <div>
-            <p>Email</p>
-            <input type="text" id="email" placeholder="Email"/>
-        </div>
-        <div>
-            <p>Message</p>
-            <textarea id="message" name="message" placeholder="Write your message..." required></textarea>
-        </div>
-        <button>Send</button>
-    </form>
-</footer>
 </body>
 </html>
