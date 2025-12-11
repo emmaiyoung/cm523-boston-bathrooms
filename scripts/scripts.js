@@ -7,7 +7,6 @@ import { Map, TileLayer, Marker, Popup, Icon, Point } from '../leaflet-2.0.0-alp
 let tempMarker = null;
 let pictureURL = null;
 let mapCoords = null;
-let lastTap = 0;
 const mapIcon = new Icon({
     iconUrl: 'images/icon.png',
     iconSize: [38, 38],
