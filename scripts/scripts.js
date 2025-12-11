@@ -7,7 +7,6 @@ import { Map, TileLayer, Marker, Popup, Icon, Point } from '../leaflet-2.0.0-alp
 let tempMarker = null;
 let pictureURL = null;
 let mapCoords = null;
-let lastTap = 0;
 const mapIcon = new Icon({
     iconUrl: 'images/icon.png',
     iconSize: [38, 38],
@@ -18,6 +17,7 @@ const mapIcon = new Icon({
 const map = new Map('map', {
     center: [42.3601, -71.0589],
     zoom: 13,
+    tapHold: true,
 });
 
 new TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -57,6 +57,8 @@ const submitButton = document.getElementById("Submit");
 const bathroomPicInput = document.getElementById("bathroomPic");
 const hoursInput = document.getElementById("hoursInput");
 
+
+
 function closeSidebar() {
   if (sidebarToggle.checked) {
     sidebarToggle.checked = false;
@@ -84,6 +86,10 @@ bathroomPicInput.addEventListener('change', function(e) {
     addLocationToggle.dispatchEvent(new Event ('change'));
     }
 
+map.on('contextmenu', function(e){
+    placeMarkerAndOpenForm(e.latlng);
+})
+/*
 function handleMapDblClick (e){
         placeMarkerAndOpenForm(e.latlng);
 }
@@ -91,7 +97,7 @@ function handleMapDblClick (e){
 function handlePointerDown(e) {
     const now = Date.now();
     const delta = now - lastTap;
-    if (delta > 0 && delta < 500) {
+    if (delta > 0 && delta < 250) {
         const pointerEvent = e.originalEvent;
         const containerPoint = map.pointerEventToContainerPoint(pointerEvent);
         const latlng = map.containerPointToLatLng(containerPoint);
@@ -107,7 +113,7 @@ function handlePointerDown(e) {
 map.on('pointerdown', handlePointerDown);
 map.on('dblclick', handleMapDblClick);
 
-/*
+
 addLocationToggle.addEventListener('change', function() {
     if (this.checked) {
         map.off('dblclick', handleMapDblClick);
@@ -123,7 +129,8 @@ addLocationToggle.addEventListener('change', function() {
     }
 });
 */
-map.doubleClickZoom.disable();
+//map.doubleClickZoom.disable();
+
 function handleSubmit(event) {
         event.preventDefault(); 
         
@@ -170,8 +177,8 @@ function handleSubmit(event) {
         locationNameInput.value = '';
         addressInput.value = '';
         if(selectedRating) selectedRating.checked = false;
-
         bathroomPicInput.value = ''; 
+        hoursInput.value = '';
         pictureURL = null;
         mapCoords = null;
 
@@ -180,14 +187,13 @@ function handleSubmit(event) {
 submitButton.addEventListener('click', handleSubmit);
 
 const toiletContainer = document.getElementById('toilet-logo-container');
-const toiletImage = document.getElementById('toilet-image');
 function triggerToiletAnimation() {
     if (toiletContainer && !toiletContainer.classList.contains('toilet-active')) {
-        toiletImage.src = 'images/toiletclosed.png';
+        toiletContainer.classList.add('toilet-closed-state');
         toiletContainer.classList.add('toilet-active');
         setTimeout(()=> {
-            toiletImage.src = 'images/toilet.png';
-            toiletImage.alt = 'Open toilet';
+            toiletContainer.classList.remove('toilet-closed-state');
+            toiletContainer.setAttribute('data-state', 'open');
         }, 400);
     }
 }
@@ -224,6 +230,35 @@ map.on('popupclose', function(){
 
 map.whenReady(function()
 {
+    toiletContainer.classList.remove('toilet-active');
+    closeToilet();
     triggerToiletAnimation();
 })
+
+
+function hideToilet(){
+    if (toiletContainer) {
+        toiletContainer.style.display = 'none';
+        toiletContainer.classList.remove('toilet-active');
+    }
+}
+
+function closeToilet() {
+    if (toiletContainer) {
+        toiletContainer.classList.add('toilet-closed-state'); 
+        toiletContainer.classList.remove('toilet-active');
+        toiletContainer.setAttribute('data-state', 'closed');
+    }
+}
+
+function handleToiletToggle() {
+    if (toiletContainer.getAttribute('data-state') === 'closed'){
+        triggerToiletAnimation();
+    }
+    else{
+        closeToilet();
+        }
+    }
+ toiletContainer.addEventListener('click', handleToiletToggle);
+
 });
