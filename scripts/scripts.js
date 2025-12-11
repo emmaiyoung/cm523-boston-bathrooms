@@ -18,6 +18,7 @@ const mapIcon = new Icon({
 const map = new Map('map', {
     center: [42.3601, -71.0589],
     zoom: 13,
+    tapHold: true,
 });
 
 new TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -57,6 +58,8 @@ const submitButton = document.getElementById("Submit");
 const bathroomPicInput = document.getElementById("bathroomPic");
 const hoursInput = document.getElementById("hoursInput");
 
+
+
 function closeSidebar() {
   if (sidebarToggle.checked) {
     sidebarToggle.checked = false;
@@ -84,6 +87,10 @@ bathroomPicInput.addEventListener('change', function(e) {
     addLocationToggle.dispatchEvent(new Event ('change'));
     }
 
+map.on('contextmenu', function(e){
+    placeMarkerAndOpenForm(e.latlng);
+})
+/*
 function handleMapDblClick (e){
         placeMarkerAndOpenForm(e.latlng);
 }
@@ -107,7 +114,7 @@ function handlePointerDown(e) {
 map.on('pointerdown', handlePointerDown);
 map.on('dblclick', handleMapDblClick);
 
-/*
+
 addLocationToggle.addEventListener('change', function() {
     if (this.checked) {
         map.off('dblclick', handleMapDblClick);
@@ -123,7 +130,8 @@ addLocationToggle.addEventListener('change', function() {
     }
 });
 */
-map.doubleClickZoom.disable();
+//map.doubleClickZoom.disable();
+
 function handleSubmit(event) {
         event.preventDefault(); 
         
@@ -227,4 +235,31 @@ map.whenReady(function()
     toiletContainer.classList.remove('toilet-active');
     triggerToiletAnimation();
 })
+
+
+function hideToilet(){
+    if (toiletContainer) {
+        toiletContainer.style.display = 'none';
+        toiletContainer.classList.remove('toilet-active');
+    }
+}
+
+function closeToilet() {
+    if (toiletImage) {
+        toiletImage.src = 'images/toiletclosed.png';
+        toiletImage.alt = 'closed toilet';
+        toiletContainer.classList.remove('toilet-active');
+    }
+}
+
+function handleToiletToggle() {
+    if (toiletImage.alt === 'closed toilet'){
+        closeToilet();
+    }
+        else{
+            triggerToiletAnimation();
+        }
+    }
+ toiletImage.addEventListener('click', handleToiletToggle);
+
 });
