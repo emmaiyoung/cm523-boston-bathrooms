@@ -198,19 +198,6 @@ h4{
         display: flex !important;
         flex-direction: column;
     }
-    
-    #projectDocs {
-    flex-direction: column !important;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1rem;
-}
-#projectDocs > div {
-        width: fit-content;
-        text-align: center;
-        margin: 5px 0;
-    }
 }
 
 /*website body on all pages*/
@@ -437,18 +424,53 @@ input[type="file"]::file-selector-button:hover {
     min-height: calc(100vh - 120px -200px);
 }
 
-#projectDocs {
+.projectDocs {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    max-width: 75ch;
-    margin: 1rem auto 1rem auto;
-    padding: 0 2em;
+    gap: .5rem;
+    flex-direction: column;
+    margin: 1rem auto;
+    max-width: 25rem;
+    padding: 1rem;
+}
+
+.projectlinks {
+    position: relative;
+    height: 100px;
+    background-color: #2d5f2e;
+    border-radius: 1rem;
+    align-content: center;
+    text-align: center;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, .3);
+}
+
+.projectlinks a{
+    text-decoration: none;
+    color: #fffef1;
+    font-size: 1.5rem;
+}
+
+.projectlinks:hover{
+    background-color: #70B85D;
+}
+
+
+#citations {
+    grid-row: 2;
+    grid-column: 1 / span 1.5;
+    justify-self: start;
+}
+
+#presentation {
+    grid-row: 2;
+    grid-column: 2.5 / 4;
+    justify-self: start;
 }
 
 h2{
-    text-align: center;
+    text-align: left;
     margin: 1rem;
+    font-size: 3rem;
 }
 h2+p {
     display: block;
@@ -456,22 +478,4 @@ h2+p {
     margin-right: auto;
     margin-left: auto;
     padding: 0 10px;
-}
-
-.projectlinks {
-    background-color: #0c273d;
-    border-radius: 20px;
-    padding: 1rem;
-    margin: .5em;
-}
-
-.projectlinks a {
-    color: #fffef1;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 1rem;
-}
-
-.projectlinks:hover {
-    background-color: #2161a7;
 }
