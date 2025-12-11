@@ -30,9 +30,12 @@
   <body>
     <!-- YOUR HTML GOES HERE -->
    <nav>
-    <header class="branding-placeholder">
-    <h1>Boston Bathrooms</h1>
-    <h4>A public bathroom map of the Boston area.</h4>
+    <header>
+    <div>
+      <a id="homeBtn" href="index.html">
+        <img class="headerLogoWrapper" src="logo.png" alt="Boston Bathrooms">
+      </a>
+    </div>
 </header>
     <input type ="checkbox" id="sidebar-active">
     <label for="sidebar-active" class="openSidebarBtn">
@@ -49,11 +52,7 @@
         <a href="about.html">About</a>
     </div>
   </nav>
-
-  <div id="toilet-logo-container">
-    <div id="toilet-wrapper">
-    <img id="toilet-image" src="images/toiletclosed.png" alt="closed toilet">
-    </div>
+  <div id="toilet-logo-container" data-state="closed">
   </div>
 <div id="map"></div>
 <!--location 1 popup-->
@@ -97,7 +96,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
       </label>
     </div class="addLocationHeading">
-        <h3>Double click on a spot to add a new location.</h3>
+        <h3>Add a new bathroom.</h3>
     <div class="section1">
     <div class="overlayContent">
     <div class="reviewMenu">
