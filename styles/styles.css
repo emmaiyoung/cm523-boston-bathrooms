@@ -402,22 +402,32 @@ input[type="file"]::file-selector-button:hover {
 
 #toilet-logo-container {
     position: fixed;
-    bottom: -200px; 
+    bottom: -170px; 
     left: 1rem;
     z-index: 9000;
     transition: bottom .7s ease-out; 
     opacity: 1;
+    background-image: url('/images/toilet.png');
+    background-size: contain;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    width: 10rem;
+    height: 20rem;
 }
 
-#toilet-logo-container #toilet-image {
-    width: 10rem;
-    height: auto;
-    margin: 0;
-    transition: opacity 0.3s ease-in-out;
-}
 .toilet-active {
-    bottom: -130px !important;
+    bottom: -90px !important;
     opacity: 1 !important;
+}
+
+.toilet-closed-state{
+    background-image: url('/images/toiletclosed.png') !important;
+}
+
+@media screen and (min-width: 620px) {
+    #toilet-logo-container {
+        background-image: url('/images/toiletweb.png')
+    }
 }
 
 /*about*/

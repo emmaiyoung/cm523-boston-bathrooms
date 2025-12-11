@@ -188,14 +188,13 @@ function handleSubmit(event) {
 submitButton.addEventListener('click', handleSubmit);
 
 const toiletContainer = document.getElementById('toilet-logo-container');
-const toiletImage = document.getElementById('toilet-image');
 function triggerToiletAnimation() {
     if (toiletContainer && !toiletContainer.classList.contains('toilet-active')) {
-        toiletImage.src = 'images/toiletclosed.png';
+        toiletContainer.classList.add('toilet-closed-state');
         toiletContainer.classList.add('toilet-active');
         setTimeout(()=> {
-            toiletImage.src = 'images/toilet.png';
-            toiletImage.alt = 'Open toilet';
+            toiletContainer.classList.remove('toilet-closed-state');
+            toiletContainer.setAttribute('data-state', 'open');
         }, 400);
     }
 }
@@ -233,6 +232,7 @@ map.on('popupclose', function(){
 map.whenReady(function()
 {
     toiletContainer.classList.remove('toilet-active');
+    closeToilet();
     triggerToiletAnimation();
 })
 
@@ -245,21 +245,21 @@ function hideToilet(){
 }
 
 function closeToilet() {
-    if (toiletImage) {
-        toiletImage.src = 'images/toiletclosed.png';
-        toiletImage.alt = 'closed toilet';
+    if (toiletContainer) {
+        toiletContainer.classList.add('toilet-closed-state'); 
         toiletContainer.classList.remove('toilet-active');
+        toiletContainer.setAttribute('data-state', 'closed');
     }
 }
 
 function handleToiletToggle() {
-    if (toiletImage.alt === 'closed toilet'){
-        closeToilet();
+    if (toiletContainer.getAttribute('data-state') === 'closed'){
+        triggerToiletAnimation();
     }
-        else{
-            triggerToiletAnimation();
+    else{
+        closeToilet();
         }
     }
- toiletImage.addEventListener('click', handleToiletToggle);
+ toiletContainer.addEventListener('click', handleToiletToggle);
 
 });
