@@ -90,6 +90,10 @@ map.on('contextmenu', function(e){
     placeMarkerAndOpenForm(e.latlng);
 })
 /*
+map.on('contextmenu', function(e){
+    placeMarkerAndOpenForm(e.latlng);
+})
+/*
 function handleMapDblClick (e){
         placeMarkerAndOpenForm(e.latlng);
 }
