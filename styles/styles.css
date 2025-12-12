@@ -394,7 +394,7 @@ input[type="file"]::file-selector-button:hover {
     z-index: 9000;
     transition: bottom .7s ease-out; 
     opacity: 1;
-    background-image: url('images/toilet.png');
+    background-image: url('..images/toilet.png');
     background-size: contain;
     background-position: center bottom;
     background-repeat: no-repeat;
@@ -408,12 +408,12 @@ input[type="file"]::file-selector-button:hover {
 }
 
 .toilet-closed-state{
-    background-image: url('images/toiletclosed.png') !important;
+    background-image: url('..images/toiletclosed.png') !important;
 }
 
 @media screen and (min-width: 620px) {
     #toilet-logo-container {
-        background-image: url('images/toiletweb.png')
+        background-image: url('..images/toiletweb.png')
     }
 }
 
